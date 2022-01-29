@@ -1,5 +1,8 @@
 using bReady.Core.IConfiguration;
 using bReady.Data;
+using bReady.Services;
+using bReady.Utilities;
+using bReady.Utilities.JWTUtilis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,8 +33,11 @@ namespace bReady
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "bReady", Version = "v1" });
             });
-
+            
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddScoped<IJWTUtils, JWTUtils>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

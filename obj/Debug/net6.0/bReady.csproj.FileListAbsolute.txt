@@ -64,3 +64,4 @@ E:\GitFolder\bReady\bin\Debug\net6.0\bReady.dll
 E:\GitFolder\bReady\bin\Debug\net6.0\ref\bReady.dll
 E:\GitFolder\bReady\bin\Debug\net6.0\bReady.pdb
 E:\GitFolder\bReady\obj\Debug\net6.0\bReady.genruntimeconfig.cache
+E:\GitFolder\bReady\bin\Debug\net6.0\BCrypt.Net-Next.dll

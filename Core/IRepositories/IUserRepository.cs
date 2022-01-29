@@ -4,6 +4,6 @@ using bReady.Models;
 
 namespace bReady.Core.IRepositories{
     public interface IUserRepository : IGenericRepository<User>{
-        Task<string> GetFirstNameAndLastName(Guid id);
+        Task<User> GetByIdOrUsername(Guid? id, string username);
     }
 }

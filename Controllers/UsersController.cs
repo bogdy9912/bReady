@@ -2,83 +2,115 @@ using System;
 using System.Threading.Tasks;
 using bReady.Core.IConfiguration;
 using bReady.Models;
+using bReady.Models.DTOs;
+using bReady.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace bReady.Controllers
 {
+
+
     [ApiController]
     [Route("[controller]")]
-    
-    public class UsersController : ControllerBase{
-        private readonly IUnitOfWork _unitOfWork;
 
-        public UsersController( IUnitOfWork unitOfWork)
+    public class UsersController : ControllerBase
+    {
+
+        private IUserService _userService;
+
+
+        public UsersController(IUserService userService) { 
+            _userService = userService;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(AuthRequestDto user)
         {
-            _unitOfWork = unitOfWork;
+            Console.WriteLine("Register Controller 1");
+            if (ModelState.IsValid)
+            {
+            Console.WriteLine("Register Controller 2");
+                var authResponseDto = await _userService.Register(user);
+            Console.WriteLine("Register Controller 3");
+
+                return Ok(authResponseDto);
+            }
+            return new JsonResult("Smth is wrong") { StatusCode = 500 };
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(AuthRequestDto authCredentials)
+        {
+            if (ModelState.IsValid)
+            {
+                var authResponseDto = await _userService.Login(authCredentials);
+                return Ok(authResponseDto);
+            }
+            return new JsonResult("Smth is wrong") { StatusCode = 500 };
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateUser(User user){
-                if (ModelState.IsValid){
-                    user.Id = Guid.NewGuid();
-                    await _unitOfWork.Users.Add(user);
-                    await _unitOfWork.CompleteAsync();
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(Guid id)
+        {
 
-                    return CreatedAtAction("GetItem", new {user.Id}, user);
-                }
-                return new JsonResult("Smth is wrong") {StatusCode = 500};
+            var userDto = await _userService.GetUserById(id);
+
+            if (userDto == null)
+            {
+                return NotFound();
+            }
+            return Ok(userDto);
         }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetItem(Guid id){
-        var user = await _unitOfWork.Users.GetById(id);
 
-        if (user == null){
-        return NotFound();
+
+
+        [HttpGet()]
+        public async Task<IActionResult> GetUsers()
+        {
+            var users = await _userService.GetUsers();
+            return Ok(users);
         }
-        return Ok();
-    }
 
 
+        // [HttpPost("{id}")]
+        // public async Task<IActionResult> UpdateUser(UserDto user)
+        // {
+        //     await _userService.UpdateUser(user);
+        //         // return BadRequest();
 
 
-    [HttpGet()]
-    public async Task<IActionResult> Get(){
-        var users = await _unitOfWork.Users.All();
+        //     await _unitOfWork.Users.Upsert(user);
+        //     await _unitOfWork.CompleteAsync();
 
-        return Ok(users);
-    }
+        //     return NoContent();
+        // }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteItem(Guid id)
+        {
+            var status = await _userService.DeleteUser(id);
+            if (status)
+            {
+                return Ok(id);
+            }
+            return NotFound();
 
-    [HttpPost("{id}")]
-    public async Task<IActionResult> UpdateItem(Guid id, User user){
-        if (id != user.Id){
+        }
+
+        [HttpDelete()]
+        public async Task<IActionResult> DeleteAll()
+        {
+            var status = await _userService.DeleteAllUsers();
+            if (status)
+            {
+                return Ok();
+            }
             return BadRequest();
         }
 
-        await _unitOfWork.Users.Upsert(user);
-        await _unitOfWork.CompleteAsync();
-
-        return NoContent();
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteItem(Guid id){
-        var item = await _unitOfWork.Users.GetById(id);
-
-        if (item == null){
-            return BadRequest();
-        }
-        await _unitOfWork.Users.Delete(id);
-        await _unitOfWork.CompleteAsync();
-
-        return Ok(id);
-
     }
 
 
-    }
-
-   
 }
