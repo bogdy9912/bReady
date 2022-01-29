@@ -4,21 +4,18 @@ using System.Threading.Tasks;
 using bReady.Core.IRepositories;
 using bReady.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace bReady.Core.Repositories{
     public class GenericRepository<T> : IGenericRepository<T> where T: class{
-        protected ApplicationDbContext context;
+        protected ApplicationDbContext _context;
         protected DbSet<T> dbSet;
 
-        protected readonly ILogger _logger;
 
         public GenericRepository(
-            ApplicationDbContext _context,
-            ILogger logger
+            ApplicationDbContext context
         ){
             _context = context;
-            _logger = logger;
+            dbSet = context.Set<T>();
         }
 
         public virtual async Task<IEnumerable<T>> All()

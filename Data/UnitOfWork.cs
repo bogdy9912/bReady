@@ -8,17 +8,17 @@ using Microsoft.Extensions.Logging;
 namespace bReady.Data{
     public class UnitOfWork : IUnitOfWork, IDisposable{
         protected readonly ApplicationDbContext _context;
-        private readonly ILogger _logger;
 
-        public UnitOfWork(ApplicationDbContext context, ILogger logger)
-        {
-            _context = context;
-            _logger = logger;
-            Users = new UserRepository(context, _logger);
-        }
+     
 
         public IUserRepository Users {get;private set;}
  
+           public UnitOfWork(ApplicationDbContext context)
+        {
+            _context = context;
+            Users = new UserRepository(context);
+        }
+
         public async Task CompleteAsync(){
             await _context.SaveChangesAsync();
         }

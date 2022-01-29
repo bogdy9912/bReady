@@ -6,12 +6,11 @@ using bReady.Core.IRepositories;
 using bReady.Data;
 using bReady.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace bReady.Core.Repositories{
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        public UserRepository(ApplicationDbContext _context, ILogger logger) : base(_context, logger)
+        public UserRepository(ApplicationDbContext context) : base(context)
         {
             
         }
@@ -25,7 +24,6 @@ namespace bReady.Core.Repositories{
             try{
                 return await dbSet.ToListAsync();
             }catch(Exception ex){
-                    _logger.LogError(ex, "{Repo} All method error", typeof(UserRepository));
                     return new List<User>();
             }
         }
@@ -46,8 +44,7 @@ namespace bReady.Core.Repositories{
                 
                 
             }catch(Exception ex){
-                    _logger.LogError(ex, "{Repo} Upsert method error", typeof(UserRepository));
-                    return false;
+                  return false;
             }
         }
 
@@ -64,8 +61,7 @@ namespace bReady.Core.Repositories{
                 
                 
             }catch(Exception ex){
-                    _logger.LogError(ex, "{Repo} Upsert method error", typeof(UserRepository));
-                    return false;
+                 return false;
             }
     
     }

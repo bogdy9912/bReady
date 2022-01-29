@@ -1,11 +1,6 @@
 E:\GitFolder\bReady\bin\Debug\net6.0\appsettings.Development.json
 E:\GitFolder\bReady\bin\Debug\net6.0\appsettings.json
 E:\GitFolder\bReady\bin\Debug\net6.0\bReady.exe
-E:\GitFolder\bReady\bin\Debug\net6.0\bReady.deps.json
-E:\GitFolder\bReady\bin\Debug\net6.0\bReady.runtimeconfig.json
-E:\GitFolder\bReady\bin\Debug\net6.0\bReady.dll
-E:\GitFolder\bReady\bin\Debug\net6.0\ref\bReady.dll
-E:\GitFolder\bReady\bin\Debug\net6.0\bReady.pdb
 E:\GitFolder\bReady\bin\Debug\net6.0\Humanizer.dll
 E:\GitFolder\bReady\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\GitFolder\bReady\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -63,4 +58,9 @@ E:\GitFolder\bReady\obj\Debug\net6.0\bReady.csproj.CopyComplete
 E:\GitFolder\bReady\obj\Debug\net6.0\bReady.dll
 E:\GitFolder\bReady\obj\Debug\net6.0\ref\bReady.dll
 E:\GitFolder\bReady\obj\Debug\net6.0\bReady.pdb
+E:\GitFolder\bReady\bin\Debug\net6.0\bReady.deps.json
+E:\GitFolder\bReady\bin\Debug\net6.0\bReady.runtimeconfig.json
+E:\GitFolder\bReady\bin\Debug\net6.0\bReady.dll
+E:\GitFolder\bReady\bin\Debug\net6.0\ref\bReady.dll
+E:\GitFolder\bReady\bin\Debug\net6.0\bReady.pdb
 E:\GitFolder\bReady\obj\Debug\net6.0\bReady.genruntimeconfig.cache
