@@ -39,6 +39,29 @@ namespace bReady.Controllers
         }
         return Ok();
     }
+
+
+
+
+    [HttpGet()]
+    public async Task<IActionResult> Get(){
+        var users = await _unitOfWork.Users.All();
+
+        return Ok(users);
+    }
+
+
+    [HttpPost("{id}")]
+    public async Task<IActionResult> UpdateItem(Guid id, User user){
+        if (id != user.Id){
+            return BadRequest();
+        }
+
+        await _unitOfWork.Users.Upsert(user);
+        await _unitOfWork.CompleteAsync();
+
+        return NoContent();
+    }
     }
 
    
