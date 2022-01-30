@@ -15,6 +15,7 @@ namespace bReady.Services
         Task<bool> Delete(Guid id);
 
         Task<bool> Update(Country newCountry);
+        Object Retrieve(Guid id);
       
     }
 }

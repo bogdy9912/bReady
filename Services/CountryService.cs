@@ -57,5 +57,12 @@ namespace bReady.Services
             return true;
         }
 
+        public Object Retrieve(Guid id){
+            var query = _applicationDbContext.Countries.Join(_applicationDbContext.Flags, c => c.Id, f => f.CountryId, (c,f) => new {Country = c, Flag = f}).Where(countryAndFlag => countryAndFlag.Country.Id==id);
+            return query;
+        }
+
+
+
     }
 }

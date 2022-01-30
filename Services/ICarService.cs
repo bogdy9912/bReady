@@ -14,6 +14,7 @@ namespace bReady.Services
         Task<bool> AddCar(Car car);
 
         Task<bool> Update(Car newCar);
+         IEnumerable<User> Retrieve();
       
     }
 }

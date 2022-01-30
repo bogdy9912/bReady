@@ -58,9 +58,8 @@ namespace bReady.Core.Repositories
             try
             {
                 var existingCountry = await dbSet.Where(x => x.Id == entity.Id).FirstOrDefaultAsync();
-        
+                
                 existingCountry.Name = entity.Name;
-
 
                 dbSet.Update(existingCountry);
 

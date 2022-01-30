@@ -51,5 +51,13 @@ namespace bReady.Controllers
             }
             return BadRequest();
         }
+
+           [HttpGet("retrieve")]
+        public IActionResult Retrive()
+        {
+            var status = _carService.Retrieve();
+            
+            return Ok(status);
+        }
     }
 }
