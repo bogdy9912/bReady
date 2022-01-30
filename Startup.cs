@@ -54,6 +54,8 @@ namespace bReady
 
             app.UseRouting();
 
+            app.UseMiddleware<JWTMiddleware>();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

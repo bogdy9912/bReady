@@ -53,15 +53,15 @@ namespace bReady.Services
             throw new NotImplementedException();
         }
 
-        public User GetById(Guid id)
+        public async Task<User> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.Users.GetById(id);
+            
         }
 
 
         public async Task<AuthResponseDto> Register(AuthRequestDto user)
         {
-            Console.WriteLine("Register User Service 1");
             var userToCreate = new User
             {
                 Username = user.Username,
@@ -71,14 +71,9 @@ namespace bReady.Services
                 Email = user.Email,
                 LastName = user.LastName
             };
-            Console.WriteLine("Register User Service 2");
-
             await _unitOfWork.Users.Add(userToCreate);
-            Console.WriteLine("Register User Service 3");
             var jwtToken = _iJWtUtils.GenerateJWTToken(userToCreate);
-            Console.WriteLine("Register User Service 4");
             await _unitOfWork.CompleteAsync();
-            Console.WriteLine("Register User Service 5");
             return new AuthResponseDto(userToCreate, jwtToken);
         }
 

@@ -30,6 +30,7 @@ namespace bReady.Utilities.Attributes
             }
 
             var user = (User)context.HttpContext.Items["User"];
+            
             if(user == null || !_roles.Contains(user.Role))
             {
                 context.Result = unauthorizedStatusCodeObject;

@@ -12,7 +12,7 @@ namespace bReady.Services
     {
         AuthResponseDto Authentificate(AuthRequestDto model);
         IEnumerable<User> GetAllUsers();
-        User GetById(Guid id);
+        Task<User> GetById(Guid id);
         Task<AuthResponseDto> Register(AuthRequestDto user);
 
         Task<AuthResponseDto> Login(AuthRequestDto user);

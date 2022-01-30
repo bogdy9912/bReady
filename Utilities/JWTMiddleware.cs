@@ -28,7 +28,7 @@ namespace bReady.Utilities
 
             if(userId != Guid.Empty)
             {
-                httpContext.Items["User"] = userService.GetById(userId);
+                httpContext.Items["User"] = await userService.GetById(userId);
             }
 
             await _next(httpContext);

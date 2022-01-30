@@ -4,6 +4,7 @@ using bReady.Core.IConfiguration;
 using bReady.Models;
 using bReady.Models.DTOs;
 using bReady.Services;
+using bReady.Utilities.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BCryptNet = BCrypt.Net.BCrypt;
@@ -28,12 +29,9 @@ namespace bReady.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(AuthRequestDto user)
         {
-            Console.WriteLine("Register Controller 1");
             if (ModelState.IsValid)
             {
-            Console.WriteLine("Register Controller 2");
                 var authResponseDto = await _userService.Register(user);
-            Console.WriteLine("Register Controller 3");
 
                 return Ok(authResponseDto);
             }
@@ -65,8 +63,9 @@ namespace bReady.Controllers
 
 
 
-
-        [HttpGet()]
+        
+        [Authorization(Role.Admin)]
+        [HttpGet("get-users")]
         public async Task<IActionResult> GetUsers()
         {
             var users = await _userService.GetUsers();
