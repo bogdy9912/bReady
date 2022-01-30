@@ -12,11 +12,16 @@ namespace bReady.Data{
      
 
         public IUserRepository Users {get;private set;}
+        public CarRepository Cars {get;private set;}
+
+        public CountryRepository Countries{get; private set;}
+        
  
            public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Users = new UserRepository(context);
+            Cars = new CarRepository(context);
         }
 
         public async Task CompleteAsync(){

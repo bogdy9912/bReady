@@ -18,5 +18,8 @@ namespace bReady.Models{
         public string PasswordHash { get; set; }
 
         public Role Role { get; set; }
+        
+        
+        public Car car{get; set;}
     }
 }

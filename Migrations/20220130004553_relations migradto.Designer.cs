@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bReady.Data;
 
@@ -11,9 +12,10 @@ using bReady.Data;
 namespace bReady.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220130004553_relations migradto")]
+    partial class relationsmigradto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,7 @@ namespace bReady.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Car");
                 });
 
             modelBuilder.Entity("bReady.Models.Country", b =>
@@ -63,7 +65,7 @@ namespace bReady.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries");
+                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("bReady.Models.Flag", b =>
@@ -91,7 +93,7 @@ namespace bReady.Migrations
                     b.HasIndex("CountryId")
                         .IsUnique();
 
-                    b.ToTable("Flags");
+                    b.ToTable("Flag");
                 });
 
             modelBuilder.Entity("bReady.Models.ModelsRelation", b =>
@@ -148,7 +150,7 @@ namespace bReady.Migrations
 
                     b.HasIndex("carId");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("bReady.Models.Flag", b =>
