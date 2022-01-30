@@ -39,5 +39,17 @@ namespace bReady.Controllers
             return Ok();
 
         }
+
+           [HttpPost("update")]
+        public async Task<IActionResult> Update(Car newCar)
+        {
+            Console.WriteLine("Update Controller");
+            var status = await _carService.Update(newCar);
+            if (status)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }

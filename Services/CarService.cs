@@ -36,11 +36,14 @@ namespace bReady.Services
         }
 
         public async Task<bool> AddCar(Car car){
-            Console.WriteLine("A intrat in sevice");
             await _unitOfWork.Cars.Add(car);
-            
             await _unitOfWork.CompleteAsync();
-            Console.WriteLine("Iese din sevice");
+            return true;
+        }
+
+        public async Task<bool> Update(Car newCar){
+            await _unitOfWork.Cars.Update(newCar);
+            await _unitOfWork.CompleteAsync();
             return true;
         }
 

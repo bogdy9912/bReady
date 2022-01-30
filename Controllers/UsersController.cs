@@ -109,6 +109,18 @@ namespace bReady.Controllers
             return BadRequest();
         }
 
+        [HttpPost("update")]
+        public async Task<IActionResult> Update(UserDto newUser)
+        {
+            Console.WriteLine("Update Controller");
+            var status = await _userService.UpdateUser(newUser);
+            if (status)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
     }
 
 

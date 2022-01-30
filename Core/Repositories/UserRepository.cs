@@ -62,11 +62,13 @@ namespace bReady.Core.Repositories
         {
             try
             {
+                Console.WriteLine("Update entry");
                 var existingUser = await dbSet.Where(x => x.Username == entity.Username).FirstOrDefaultAsync();
         
                 existingUser.FirstName = entity.FirstName;
                 existingUser.LastName = entity.LastName;
                 
+                dbSet.Update(existingUser);
 
                 return true;
             }

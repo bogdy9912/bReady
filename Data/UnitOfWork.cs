@@ -22,6 +22,7 @@ namespace bReady.Data{
             _context = context;
             Users = new UserRepository(context);
             Cars = new CarRepository(context);
+            Countries = new CountryRepository(context);
         }
 
         public async Task CompleteAsync(){

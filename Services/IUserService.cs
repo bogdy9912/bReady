@@ -20,5 +20,6 @@ namespace bReady.Services
         Task<IEnumerable<User>> GetUsers();
         Task<bool> DeleteUser(Guid id);
         Task<bool> DeleteAllUsers();
+        Task<bool> UpdateUser(UserDto newUser);
     }
 }

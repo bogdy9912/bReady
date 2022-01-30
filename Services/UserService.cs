@@ -127,5 +127,13 @@ namespace bReady.Services
             return true;
         }
 
+        public async Task<bool> UpdateUser(UserDto newUser){
+            Console.WriteLine("Update SErvice");
+                await _unitOfWork.Users.Update(newUser);
+            await _unitOfWork.CompleteAsync();
+
+                return true;
+        }
+
     }
 }

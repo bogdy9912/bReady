@@ -40,6 +40,22 @@ namespace bReady.Services
             await _unitOfWork.CompleteAsync();
             return true;
         }
+        public async Task<Country> GetCountryById(Guid id){
+            var country = await _unitOfWork.Countries.GetById(id);
+            await _unitOfWork.CompleteAsync();
+            return country;
+        }
+        public async Task<bool> Delete(Guid id){
+            await _unitOfWork.Countries.Delete(id);
+            await _unitOfWork.CompleteAsync();
+            return true;
+        }
+        
+        public async Task<bool> Update(Country newCountry){
+            await _unitOfWork.Countries.Update(newCountry);
+            await _unitOfWork.CompleteAsync();
+            return true;
+        }
 
     }
 }

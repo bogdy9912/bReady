@@ -12,6 +12,8 @@ namespace bReady.Services
     {
          Task<IEnumerable<Car>> GetAllCars();
         Task<bool> AddCar(Car car);
+
+        Task<bool> Update(Car newCar);
       
     }
 }

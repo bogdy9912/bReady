@@ -53,15 +53,16 @@ namespace bReady.Core.Repositories
                 return false;
             }
         } 
-           public async Task<bool> Update(UserDto entity)
+           public async Task<bool> Update(Car entity)
         {
             try
             {
-                // var existingUser = await dbSet.Where(x => x.Username == entity.Username).FirstOrDefaultAsync();
+                 var existingCar = await dbSet.Where(x => x.Id == entity.Id).FirstOrDefaultAsync();
         
-                // existingUser.FirstName = entity.FirstName;
-                // existingUser.LastName = entity.LastName;
-                
+                existingCar.Name = entity.Name;
+
+
+                dbSet.Update(existingCar);
 
                 return true;
             }
